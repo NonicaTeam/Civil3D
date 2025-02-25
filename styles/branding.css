@@ -1,0 +1,774 @@
+/* General styles */
+/* Ensure consistent font size across all elements */
+html, body, table, th, td, h1, h2, h3, h4, h5, h6, p, span, div {
+    font-family: 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important; /* Ensures readability */
+    text-size-adjust: 100% !important;
+    -webkit-text-size-adjust: 100% !important;
+    -moz-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+}
+
+/* Prevent browsers from overriding text size */
+* {
+    max-height: 1000000px; /* Prevents text scaling issues on some mobile browsers */
+}
+
+body {
+    font-family: 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px !important;
+    color: #696969;
+    padding: 10px;
+    overflow-x: hidden;
+    text-align: justify;
+}
+
+h1 {
+    font-family: 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 28px !important;
+    font-weight: bold;
+    margin-top: 30px;
+    color: #696969;
+}
+
+h2, h3 {
+    font-family: 'Segoe UI Semibold', 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    margin: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    color: #696969;
+    font-size: 18px !important;
+}
+
+h2 {
+    font-size: 18px !important;
+    color: #696969;
+}
+
+h3 {
+    font-family: 'Segoe UI Semibold', 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px !important;
+    font-weight: normal;
+    margin: 5px 0px 0px 0px;
+    color: #696969;
+}
+
+h4 {
+    font-family: 'Segoe UI Semibold', 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px !important;
+    font-weight: normal;
+    margin: 5px 0px 0px 0px;
+    color: #696969;
+}
+
+h5, h6 {
+    font-family: 'Segoe UI Semibold', 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px !important;
+    font-weight: normal;
+    margin: 5px 0px 0px 0px;
+    color: #696969;
+}
+
+     /* Webkit-based browsers (Chrome, Safari, Opera, Edge Chromium) */
+/* Webkit-based browsers (Chrome, Safari, Edge Chromium, Opera) */
+::-webkit-scrollbar {
+    width: 10px;  /* Adjust width */
+    height: 10px; /* Adjust height for horizontal scroll */
+  }
+  
+  /* Scrollbar Track (Background) */
+  ::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, #f1f1f1, #e0e0e0); /* Gradient effect */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+  }
+  
+  /* Scrollbar Thumb (The draggable part) */
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #696969, #696969); /* Gradient thumb */
+    border-radius: 10px; /* Rounded thumb */
+    border: 2px solid #f1f1f1; /* Adds spacing effect */
+  }
+  
+  /* Hover effect */
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #666, #444);
+  }
+  
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #696969 #f1f1f1; /* Thumb color | Track color */
+  }
+
+a, a:link, a:visited, a:active {
+    text-decoration: none;
+    color: inherit; /* Prevent color inheritance from global link styles */
+}
+
+/* Specific styling for year links */
+.yearLink {
+    text-decoration: none;   /* No underline */
+    color: #ffffff;          /* White text color */
+    background-color: #808080; /* Gray background for the year links */
+    padding: 10px 15px;       /* Add padding around the year links */
+    font-size: 12px !important;
+    font-weight: bold;
+    margin: 0 10px;           /* Space between year links */
+    display: inline-block;    /* Display them inline */
+    text-align: center;       /* Center the text inside the link */
+    margin-left: 0;
+    margin-right: 0;
+background: black;
+}
+
+.yearLink:hover {
+    text-decoration: underline;
+    color: #3390b1;           /* Change the color on hover */
+}
+
+/* Optional: Ensure no default color inheritance from other styles */
+.yearLink:link,
+.yearLink:visited,
+.yearLink:active {
+    color: #ffffff;          /* Ensure the links are white */
+}
+
+a[href*="#PageHeader"] {
+    display:none
+}
+
+a, a:link {
+    text-decoration: none;
+    color: #5235ef;
+}
+
+a:visited, a:active {
+    text-decoration: none;
+    color: #5235ef;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #3390b1;
+}
+
+a.button, a.button:active, a.button:hover {
+    float: right;
+    background-color: #0080c0;
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px !important;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-left: 6px;
+}
+
+a.button:link, a.button:visited {
+    color: white;
+}
+
+img {
+    border: 0;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 15px;
+    line-height: 18px;
+    font-size: 12px !important;
+}
+
+q {
+    font-style: italic;
+}
+
+blockquote {
+    margin-top: 0px;
+}
+
+
+div.alert img {
+    padding-right: 5px;
+}
+
+ol {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+ol ol {
+    list-style-type: lower-alpha;
+}
+
+ol ol ol {
+    list-style-type: lower-roman;
+}
+
+ul {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.noBullet {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+ul ul {
+    list-style-type: circle;
+}
+
+    ul ul ul {
+        list-style-type: square;
+    }
+
+dt {
+    font-weight: 600;
+}
+
+pre {
+    font-family: Consolas, Courier, monospace;
+    overflow: hidden;
+}
+
+.pageHeader {
+    display: none;
+}
+
+.pageBody {
+    font-size: 12px !important;
+    padding: 0px 0px 0px 0px;
+    border: 0px;
+}
+
+.topicContent {
+    padding: 15px 15px 15px 10px;
+    overflow: visible;
+}
+
+.pageFooter {
+    font-size: 12px !important;
+    clear: both;
+    padding: 10px;
+    text-align: center;
+}
+
+.feedbackLink {
+  font-size: 12px !important;
+  text-indent: -9999px;
+  line-height: 0; /* Collapse the original line */
+}
+
+.feedbackLink::after {
+  font-size: 12px !important;
+  content: "Made with ❤️ by Nonica.io\A\A\A[ Civil3D® is a registered trademark of Autodesk, Inc. This website is not affiliated with or endorsed by Autodesk, Inc.]";
+  text-indent: 0;
+  display: block;
+  line-height: initial; /* New content takes up original line height */
+  white-space: pre-line;
+}
+
+.missing {
+    color: #dc143c;
+    font-weight: bold;
+}
+
+.preliminary {
+    color: #dc143c;
+    font-weight: bold;
+}
+
+div.preliminary {
+    margin-bottom: 5px;
+    color: #333333;
+}
+
+div.caption {
+    font-weight: bold;
+    font-size: 12px !important; /*12pt*/
+    color: #003399;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.summary {
+    display: none;
+}
+
+.has-text-weight-normal {
+    font-weight: 400 !important;
+}
+
+/* Collapsible region styles */
+.collapsibleAreaRegion {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.collapseToggle {
+    padding-right: 5px;
+}
+
+.collapsibleRegionTitle {
+    font-weight: bold !important;
+    font-size: 16px !important;
+    margin-top: 9px;
+    margin-bottom: 19px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    color: #696969;
+}
+
+.collapsibleSection {
+    padding: 0px;
+    font-size: 12px !important;
+}
+
+/* Syntax and code snippet styles */
+.codeSnippetContainer {
+    min-width: 260px;
+    margin-top: 10px;
+    /* pointer-events: none; */
+    /* cursor: not-allowed; */
+}
+
+.codeSnippetContainerTabs {
+    height: 23px;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+     color: #696969;
+}
+
+.codeSnippetContainerTab {
+    padding: 0px 15px;
+    width: auto;
+    height: 22px;
+    color: #ffffff;
+    font-family: "Segoe UI", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    font-style: normal !important;
+    vertical-align: baseline;
+    float: left;
+}
+
+.codeSnippetContainerTabActive {
+    background: #ffffff;
+    padding: 0px 15px;
+    width: auto;
+    height: 22px;
+    color: #696969;
+    font-family: "Segoe UI", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    font-style: normal !important;
+    vertical-align: baseline;
+    float: left;
+}
+
+.codeSnippetContainerTabPhantom {
+    background: #f8f8f8;
+    padding: 0px 15px;
+    width: auto;
+    height: 22px;
+     color: #696969;
+    font-family: "Segoe UI", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    font-style: normal !important;
+    vertical-align: baseline;
+    float: left;
+    display: none;
+}
+
+.codeSnippetContainerTabSingle {
+    background: #f8f8f8;
+    padding: 0px 15px 0px 15px;
+    width: auto;
+    height: 20px;
+     color: #696969;
+    font-family: "Segoe UI", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: bold;
+    font-style: normal !important;
+    vertical-align: baseline;
+    float: left;
+}
+
+.codeSnippetContainerTab a {
+    top: 2px;
+     color: #696969;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+}
+
+    .codeSnippetContainerTab a:link {
+             color: #696969;
+    }
+
+    .codeSnippetContainerTab a:hover {
+             color: #696969;
+    }
+
+.codeSnippetContainerTabActive a {
+   color: #696969;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    cursor: default;
+    font-size: 15px !important;
+}
+
+    .codeSnippetContainerTabActive a:link {
+             color: #696969;
+    }
+
+    .codeSnippetContainerTabActive a:hover {
+             color: #696969;
+    }
+
+.codeSnippetContainerTabPhantom a {
+    top: 2px;
+     color: #696969;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    cursor: default;
+}
+
+    .codeSnippetContainerTabPhantom a:link {
+             color: #696969;
+    }
+
+.codeSnippetContainerCodeContainer {
+    border: 1px solid #939393;
+    top: -1px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.codeSnippetToolBar {
+    width: auto;
+    height: auto;
+}
+
+.codeSnippetToolBarText {
+    top: -8px;
+    width: auto;
+    height: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    vertical-align: top;
+    float: right;
+    position: relative;
+}
+
+    .codeSnippetToolBarText a {
+        color: #1364c4;
+        text-decoration: none;
+        padding-right: 8px;
+        font-family: "Segoe UI", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif !important;
+        font-size: 10px !important;
+        font-style: normal !important;
+        text-decoration: none;
+        margin-right: 10px;
+        margin-left: 0px;
+        background-color: #ffffff;
+    }
+
+        .codeSnippetToolBarText a:link {
+            color: #1364c4;
+        }
+
+.codeSnippetContainerCode {
+    margin: 0px;
+    padding: 12px;
+    width: auto;
+    overflow-x: auto !important;
+}
+
+    .codeSnippetContainerCode div {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .codeSnippetContainerCode pre {
+        margin: 0px;
+        padding: 5px;
+        overflow: auto;
+        font-family: Consolas, Courier, monospace !important;
+        font-style: normal;
+        font-weight: normal;
+    }
+
+    .codeSnippetContainerCode .keyword {
+        color: #9281ed;
+        font-weight: bold;
+    }
+
+.copyCodeSnippet {
+        display: none;
+}
+
+/* Keyword and phrase styles */
+span.code, span.command {
+    font-family: Consolas, Courier, monospace;
+    color: #000066;
+    background-color: #f4f4f4;
+    font-size: 12px !important;
+}
+
+span.selflink {
+    color: #1b2032;
+    font-style: italic;
+}
+
+span.ui {
+    font-weight: bold;
+}
+
+span.math {
+    font-style: italic;
+}
+
+span.input {
+    font-weight: bold;
+}
+
+span.identifier {
+    color: black;
+}
+
+span.term {
+    font-style: italic;
+}
+
+span.label {
+    font-weight: bold;
+}
+
+span.foreignPhrase, span.phrase {
+    font-style: italic;
+}
+
+span.placeholder {
+    font-style: italic;
+}
+
+span.typeparameter {
+    font-style: italic;
+}
+
+span.keyword {
+    font-weight: bold;
+}
+
+span.parameter {
+    font-style: italic;
+}
+
+span.literal {
+    color: #cc0000;
+}
+
+span.comment {
+    color: #006633;
+}
+
+span.introStyle {
+    color: #a9a9a9;
+    line-height: 12px;
+}
+
+span.noLink {
+    font-weight: bold;
+}
+
+
+/* Glossary styles */
+h3.glossaryGroupHeading {
+    color: #808080;
+}
+
+dl.glossaryGroupList {
+    margin: 0;
+    color: Black;
+}
+
+dt.glossaryEntry {
+    margin-left: 5px;
+}
+
+dd.glossaryEntry {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+div.relatedEntry {
+    margin-bottom: 4px;
+}
+
+/* Bibliography styles */
+span.bibliographyAuthor {
+    font-weight: bold;
+}
+
+span.bibliographyTitle {
+    font-style: italic;
+}
+
+sup.citation a:link a:visited a:active {
+    text-decoration: none;
+}
+
+#IDAB_tab1 {
+    pointer-events: none; /* Disables clicking on the div and its contents */
+}
+
+/* Placeholder for the Help 1 user data style class */
+
+
+#IDAB_tab1, #IDADC_tab1 a {
+    pointer-events: none; /* Disables clicking on the anchor (link) inside the div */
+    cursor: default; /* Changes cursor to default to indicate it's not clickable */
+}
+
+#IDAB_tab2, #IDAB_tab3, #IDAB_tab4 {
+    display: none; /* Hides the element and removes it from the layout */
+    pointer-events: none;
+}
+#IDACC_tab2, #IDACC_tab3, #IDACC_tab4 {
+    display: none; /* Hides the element and removes it from the layout */
+    pointer-events: none;
+}
+
+#IDABC_tab2, #IDABC_tab3, #IDABC_tab4, #IDADC_tab2 {
+    display: none; /* Hides the element and removes it from the layout */
+    pointer-events: none;
+}
+
+#search-container {
+    background-color: #808080;  /* Gray background */
+    display: flex;              /* Use flexbox */
+    justify-content: center;    /* Center horizontally */
+    align-items: center;        /* Center vertically (if needed) */
+    padding: 10.5px 0;          /* Add vertical padding */
+    margin-left: calc(-1 * (100vw - 100%)/2);
+    margin-right: calc(-1 * (100vw - 100%)/2);
+    overflow-x: hidden;
+    font-size: 15px !important;
+}
+  
+#IDBDASection, #IDBSection, #enumMemberList {
+    font-size: 12px !important; /* Disables clicking on the div and its contents */
+}
+
+table {
+    border-collapse: collapse;
+    padding: 0;
+    margin-bottom: 15px;
+    font-size: 12px !important;
+    width: 100%;
+    border: 0px;
+    /*word-break: break-all; /* Breaks words at any character */
+    /*overflow-wrap: anywhere;  Ensures words break where needed */
+    white-space: normal; /* Allows normal wrapping */
+}
+
+th {
+    background-color: #ededed;
+    color: #636363;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    max-width: 100%;
+    /*word-break: break-all; /* Breaks words at any character */
+    /*overflow-wrap: anywhere; /* Ensures words break where needed */
+    white-space: normal; /* Allows normal wrapping */
+    font-size: 12px !important;
+    border-bottom: 1px solid #dbdbdb;
+    margin: 10px;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+td {
+    color: #696969;
+    vertical-align: top;
+    font-size: 12px !important;
+    max-width: 100%;
+    /*word-break: break-all; /* Breaks words at any character */
+    /*overflow-wrap: anywhere; /* Ensures words break where needed */
+    white-space: normal; /* Allows normal wrapping */
+    font-size: 12px !important;
+    border-bottom: 1px solid #dbdbdb;
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 8px;
+    padding-left: 8px;
+    max-width:500px;
+}
+
+table p:last-child {
+    padding-bottom: 0;
+    font-size: 12px !important;
+}
+
+table.members td, table.members tr, table.members th {
+    font-size: 12px !important;
+    min-width: 100px;
+}
+
+table.members img {
+    padding-right: 5px;
+    font-size: 12px !important;
+}
+
+
+table.titleTable td {
+    padding-top: 0px;
+    border-width: 0px;
+}
+
+.titleTable {
+    top: -5;
+    background: white; /* Prevent content from overlapping */
+    z-index: 1000; /* Ensure it stays on top */
+    border-collapse: collapse; /* Keeps table styling consistent */
+    width: 100%; /* Ensures it spans the full width */
+    font-size: 12px !important;
+}
+
+td.titleColumn {
+    margin-top: 0px;
+    padding-left: 0px;
+    vertical-align: middle;
+}
+
+td.logoColumn {
+    padding-left: 0px;
+    padding-right: 10px;
+    vertical-align: middle;
+    width: 1px;
+}
+
+td.logoColumnAbove {
+    padding: 0px 10px 0px 0px;
+    vertical-align: middle;
+}
+
+* {
+    font-size: 12px !important; /* 1rem = 16px */
+}
+.iconColumn *{
+    width: 5%;
+}
+th.iconColumn {
+    width: 20px !important;
+    max-width: 20px !important;
+}

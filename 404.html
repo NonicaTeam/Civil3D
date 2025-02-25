@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="scripts/branding.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/branding.css" />
+    <link rel="shortcut icon" href="icons/favicon.ico" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Available</title>
+    <style>
+        body {
+            background: white;
+            color: #555;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .header {
+            text-align: left;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+            background: linear-gradient(90deg, #701815, #e2d1d0);
+            background-size: 200% auto; /* Added for animation effect */
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s infinite alternate;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .info {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Page not available in this API version.</h1>
+    </div>
+    <div class="info">
+        <p>Why?</p>
+        <ul>
+            <li>The API was changed or updated here.</li>
+            <li>You may have a typo in the URL.</li>
+        </ul>
+    </div>
+    <div class="info">
+        <p>So?</p>
+        <ul>
+            <li>Check the documentation tree for all links.</li>
+            <li>Use the top buttons to go to another API version.</li>
+        </ul>
+    </div>
+</body>
+</html>
