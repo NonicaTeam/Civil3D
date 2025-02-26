@@ -114,7 +114,7 @@ body.DocSearch--active {
 }
 
 .separator.expanded {
-  width: 75%; /* Full width when the class "expanded" is added */
+  width: 100%; /* Full width when the class "expanded" is added */
 }
 
 /* Optional: Animation effect for a smooth loading transition */
@@ -123,14 +123,13 @@ body.DocSearch--active {
     width: 0%;
   }
   100% {
-    width: 75%;
+    width: 100%;
   }
 }
 
 .separator {
   animation: expandWidth 2s ease-out forwards; /* The separator will expand gradually */
 }
-
 
 /* Hover effect */
 .button-container button:hover {

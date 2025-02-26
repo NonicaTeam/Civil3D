@@ -22,6 +22,35 @@ var sectionStatesInitialized = false;
     }
   })();
 
+  document.addEventListener("DOMContentLoaded", function () {
+    // Select the correct element
+    const feedbackElement = document.getElementById("fb");
+
+    if (feedbackElement) {
+        feedbackElement.style.display = "block"; // Ensure it's visible
+
+        // Create a div to hold the new content
+        const footerDiv = document.createElement("div");
+        footerDiv.classList.add("feedbackContent");
+
+        // Add actual links
+        footerDiv.innerHTML = `
+            Made with ❤️ by Nonica.io
+            <br>
+			<span class="inline-links">
+				<a href="https://RevAPIDocs.com" target="_blank">RevAPIDocs.com</a>  |  
+				<a href="https://CivAPIDocs.com" target="_blank">CivAPIDocs.com</a>
+			</span>
+            <br>
+            Civil3D® is a registered trademark of Autodesk, Inc. This website is not affiliated with or endorsed by Autodesk, Inc.
+        `;
+
+        // Append the new div inside the span
+        feedbackElement.prepend(footerDiv);
+    }
+});
+
+
 // attach a handler to a particular event on an element
 // in a browser-independent way
 function registerEventHandler (element, event, handler) {
