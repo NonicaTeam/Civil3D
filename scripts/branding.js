@@ -34,8 +34,8 @@
             Made with ❤️ by Nonica.io
             <br>
           <span class="inline-links">
-            <a href="https://RevAPIDocs.com" target="_blank">RevAPIDocs.com</a>  |  
-            <a href="https://CivAPIDocs.com" target="_blank">CivAPIDocs.com</a>
+            <a href="https://RevAPIDocs.com" target="_blank">Revit API Docs</a>  |  
+            <a href="https://CivAPIDocs.com" target="_blank">Civil3D API Docs</a>
           </span>
             <br>
             Civil3D® is a registered trademark of Autodesk, Inc. This website is not affiliated with or endorsed by Autodesk, Inc.
