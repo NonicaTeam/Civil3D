@@ -32,6 +32,7 @@
         // Add actual links
         footerDiv.innerHTML = `
             Made with ❤️ by Nonica.io
+            <br>
           <span class="inline-links">
             <a href="https://RevAPIDocs.com" target="_blank">Revit API Docs</a>  |  
             <a href="https://CivAPIDocs.com" target="_blank">Civil3D API Docs</a>
