@@ -41,7 +41,7 @@ var sectionStatesInitialized = false;
             <a href="https://RevAPIDocs.com" target="_blank">Revit API Docs</a>  |  
             <a href="https://CivAPIDocs.com" target="_blank">Civil3D API Docs</a>
 			</span>
-            Civil3D® is a registered trademark of Autodesk, Inc. This website is not affiliated with or endorsed by Autodesk, Inc.
+            Civil 3D® is a registered trademark of Autodesk, Inc. This website is not affiliated with or endorsed by Autodesk, Inc.
         `;
 
         // Append the new div inside the span
