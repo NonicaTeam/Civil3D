@@ -439,6 +439,7 @@ span#runningHeaderText
 
 /* Applies to the topic title in the second row of the upper table in the
    non-scrolling header region. */
+   
 span#nsrTitle
 {
     font-family: 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
@@ -447,6 +448,15 @@ span#nsrTitle
     margin-top: 30px;
     color: #696969;
 }
+
+.typeparameter, .cs, .nu, .languageSpecificText
+{
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    color: inherit !important;
+}
+
 /*------------------------------ End Non-scrolling Header Region Styles -------------------------------*/
 
 
