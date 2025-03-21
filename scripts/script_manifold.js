@@ -23,8 +23,8 @@ var sectionStatesInitialized = false;
   })();
 
   document.addEventListener("DOMContentLoaded", function () {
-	updateLanguageTextCSorNU();
-    // Select the correct element
+    updateLanguageTextCSorNU();
+	// Select the correct element
     const feedbackElement = document.getElementById("fb");
 
     if (feedbackElement) {
@@ -38,18 +38,38 @@ var sectionStatesInitialized = false;
         footerDiv.innerHTML = `
             Made with ❤️ by Nonica.io
             <br>
-			<span class="inline-links">
+          <span class="inline-links">
             <a href="https://RevAPIDocs.com" target="_blank">Revit API Docs</a>  |  
             <a href="https://CivAPIDocs.com" target="_blank">Civil3D API Docs</a>
-			</span>
+          </span>
             Civil 3D® is a registered trademark of Autodesk, Inc. This website is not affiliated with or endorsed by Autodesk, Inc.
         `;
 
         // Append the new div inside the span
         feedbackElement.prepend(footerDiv);
     }
+	//Find Remarks Section
+    const remarkEle = document.getElementById('remarksSection');
+    if (remarkEle ) {
+      //Find Summary Section
+      const summaryElement = document.querySelector('.summary');
+      if(summaryElement)
+      {
+		if(remarkEle.innerHTML.trim() != "")
+		{
+			remarkEle.insertAdjacentText('afterbegin', 'Remarks: ');
+			remarkEle.removeAttribute('class');
+			summaryElement.appendChild(remarkEle);
+		}
+		const heading = document.querySelector('h1:has(> span > img#remarksToggle)');
+		if(heading)
+		{
+			heading.remove();
+		}
+      }
+    }
+	//Collapse RegionTitle with Inheritance. It is done in LoadPage
 });
-
 
 // attach a handler to a particular event on an element
 // in a browser-independent way
@@ -305,7 +325,16 @@ registerEventHandler(window, 'load', getInstanceDelegate(this, "LoadPage"));
 	  for (i = 0; i < imgElements.length; i++)
 	  {
 		  if ((sectionStates[imgElements[i].id] == "e"))
-			  ExpandSection(imgElements[i]);
+			{
+				if(imgElements[i].id != "familyToggle")
+				{
+					ExpandSection(imgElements[i]);
+				}
+				else
+				{
+					CollapseSection(imgElements[i]);
+				}
+			}  
 		  else
 			  CollapseSection(imgElements[i]);
 	  }
@@ -1248,7 +1277,7 @@ registerEventHandler(window, 'load', getInstanceDelegate(this, "LoadPage"));
 	  var title = document.getElementsByTagName("TITLE")[0].innerText.replace(rExp, "''");
 	  location.href = "mailto:" + alias + "?subject=" + subject + title + "&body=Topic%20ID:%20" + id + "%0d%0aURL:%20" + url + "%0d%0a%0d%0aComments:%20";
   }
-
+  
   function updateLanguageTextCSorNU() {
 	// Get all elements with class "languageSpecificText"
 	const containers = document.querySelectorAll('.languageSpecificText');
