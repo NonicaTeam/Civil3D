@@ -824,7 +824,10 @@ const callback = (mutationsList, observer) => {
                                     if(iframe.contentWindow.location.href  != linkHref)
                                     {
                                         setTimeout(function() {
-                                            iframe.contentWindow.location.replace(linkHref);
+                                            iframe.src = linkHref;
+                                            // Replace the current history state in the parent window to avoid adding an extra step
+                                            history.replaceState(null, null, window.location.href);
+                                            //iframe.contentWindow.location.replace(linkHref);
                                         }, 0);
                                         //iframe.contentWindow.location.replace(linkHref);
                                         //iframe.contentWindow.location.replace(newString);
