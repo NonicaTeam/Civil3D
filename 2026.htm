@@ -686,7 +686,7 @@ const callback = (mutationsList, observer) => {
             iframe.style.overflowX = "scroll"; 
 
             // Create the container div
-            const containerText = document.createElement('div');
+            const containerText = document.createElement('a');
             containerText.id = "containerPreviewText";
             containerText.style.display = 'flex';
             containerText.style.alignItems = 'center';
@@ -698,7 +698,7 @@ const callback = (mutationsList, observer) => {
             containerText.style.right = '-51%';
             containerText.style.zIndex = '999999';
             containerText.style.borderRadius = "5px";  
-            containerText.style.backgroundColor = 'white';
+            containerText.style.backgroundColor = '#f5f6f8';
             containerText.style.display = 'flex';
             containerText.style.flexDirection = 'column';
 
@@ -733,24 +733,18 @@ const callback = (mutationsList, observer) => {
                 {
                     if(elementPreview && iframe.contentWindow.location.href != "about:blank")
                     {
-                        //elementPreview.remove();
-
-                        //elementPreview.style.alignItems = 'flex-start'; 
+                        // Create top button to navigate to page
                         elementPreview.style.justifyContent = 'flex-start';
-                        elementPreview.style.height = "20px";
-
-                        // Create the message element
+                        elementPreview.style.height = "25px";
                         elementPreview.textContent = '↪ Go To This Page';
                         elementPreview.style.fontSize = '13px';
                         elementPreview.style.fontWeight = 'bold';
-                        elementPreview.style.verticalAlign = 'top';
-                        elementPreview.style.color = '#5235ef';
-                        elementPreview.style.backgroundColor = 'transparent';
+                        elementPreview.style.verticalAlign = 'top';                        
                         elementPreview.style.cursor = 'pointer';
-
-                        elementPreview.addEventListener('click', function() {
-                            window.location.href = iframe.contentWindow.location.href; // Navigate to the current link
-                        });
+                        elementPreview.style.paddingTop = '5px';
+                        elementPreview.style.borderRadius = "5px 5px 0px 0px";
+                        elementPreview.style.setProperty('color', '#5235ef', 'important');
+                        elementPreview.href = iframe.contentWindow.location.href;
                     }
                 } catch{}
                 
@@ -886,24 +880,6 @@ const callback = (mutationsList, observer) => {
             }
         }
     }
-    // else
-    // {
-    //     const newiframePreview = document.querySelector('#newiframePreview');
-    //     if(newiframePreview)
-    //     {
-    //         newiframePreview.remove();
-    //     }
-    //     const iframePreview = document.querySelector('#iframePreview');
-    //     if(iframePreview)
-    //     {
-    //         iframePreview.remove();
-    //     }
-    //     const containerPreviewText = document.querySelector('#containerPreviewText');
-    //     if(containerPreviewText)
-    //     {
-    //         containerPreviewText.remove();
-    //     }
-    // }
 };
 // Create an observer instance linked to the callback function
 const observer = new MutationObserver(callback);
