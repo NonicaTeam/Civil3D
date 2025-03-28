@@ -2,7 +2,7 @@
 <!-- !DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN" -->
 <html>
 <head>
-
+<meta name="referrer" content="no-referrer-when-downgrade">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QT81XLM1XP"></script>
 <script>
@@ -824,10 +824,10 @@ const callback = (mutationsList, observer) => {
                                     if(iframe.contentWindow.location.href  != linkHref)
                                     {
                                         setTimeout(function() {
-                                            iframe.src = linkHref;
+                                            //iframe.src = linkHref;
                                             // Replace the current history state in the parent window to avoid adding an extra step
-                                            history.replaceState(null, null, window.location.href);
-                                            //iframe.contentWindow.location.replace(linkHref);
+                                            //history.replaceState(null, null, window.location.href);
+                                            iframe.contentWindow.location.replace(linkHref);
                                         }, 0);
                                         //iframe.contentWindow.location.replace(linkHref);
                                         //iframe.contentWindow.location.replace(newString);
