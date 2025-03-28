@@ -670,20 +670,27 @@ const callback = (mutationsList, observer) => {
             }
             
             //Add right iframe for preview panel
+            const containerIframe = document.createElement('div');
+            containerIframe.id = "containerIframe"
+            containerIframe.classList.add('DocSearch-Iframe');
+            containerIframe.style.width = '50%';
+            containerIframe.style.height = '100%';
+            containerIframe.style.position = 'absolute'; // or 'fixed' if you want it to stay on the screen when scrolling
+            containerIframe.style.top = '0px';
+            containerIframe.style.right = '-51%';
+            containerIframe.style.backgroundColor = '#f5f6f8';
+            containerIframe.style.borderRadius = "5px";       
+            containerIframe.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.3)";  
+
             const iframe = document.createElement('iframe');
             iframe.id = "iframePreview"
             iframe.classList.add('DocSearch-Iframe');
-            iframe.style.width = '50%';
-            iframe.style.height = '100%';
-            iframe.style.position = 'absolute'; // or 'fixed' if you want it to stay on the screen when scrolling
-            iframe.style.top = '0px';
-            iframe.style.right = '-51%';
-            iframe.style.zIndex = '9999';
-            iframe.style.backgroundColor = 'white';
-            iframe.style.borderRadius = "5px";       
-            iframe.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.3)"; 
             iframe.style.overflow = "auto"; 
             iframe.style.overflowX = "scroll"; 
+            iframe.style.zIndex = '9999';
+            iframe.style.borderRadius = "5px"; 
+            iframe.style.backgroundColor = 'white';
+            containerIframe.appendChild(iframe);
 
             // Create the container div
             const containerText = document.createElement('a');
@@ -773,14 +780,15 @@ const callback = (mutationsList, observer) => {
                             iframe.contentWindow.location.href.includes("2022") ||
                             iframe.contentWindow.location.href.includes("2023"))
                         {
-                            iframeDocument.body.style.setProperty('margin', '-20px', 'important');
+                            iframeDocument.body.style.setProperty('margin-left', '-15px', 'important');
                         }
                     }
                 }
                 catch{}
+                iframe.style.visibility = 'visible';
             };
             // Append the iframe to the modal
-            docSearchContainer.appendChild(iframe);
+            docSearchContainer.appendChild(containerIframe);
         }
 
         //Check changes in shown items.
@@ -819,18 +827,14 @@ const callback = (mutationsList, observer) => {
                                     // Step 3: Retrieve the href attribute value
                                     const linkHref = anchorTag.href;
                                     const iframe = document.getElementById("iframePreview");
-                                    //Cambiar two new string
                                     //const newString = linkHref.replace('https://civapidocs.com/', 'http://localhost:8000/');
                                     if(iframe.contentWindow.location.href  != linkHref)
                                     {
                                         setTimeout(function() {
-                                            //iframe.src = linkHref;
-                                            // Replace the current history state in the parent window to avoid adding an extra step
-                                            //history.replaceState(null, null, window.location.href);
+                                            iframe.style.visibility = 'hidden';
                                             iframe.contentWindow.location.replace(linkHref);
+                                            //iframe.contentWindow.location.replace(newString);
                                         }, 0);
-                                        //iframe.contentWindow.location.replace(linkHref);
-                                        //iframe.contentWindow.location.replace(newString);
                                     }
                                 }
                             }
