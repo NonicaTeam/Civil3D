@@ -823,7 +823,10 @@ const callback = (mutationsList, observer) => {
                                     //const newString = linkHref.replace('https://civapidocs.com/', 'http://localhost:8000/');
                                     if(iframe.contentWindow.location.href  != linkHref)
                                     {
-                                        iframe.contentWindow.location.replace(linkHref);
+                                        setTimeout(function() {
+                                            iframe.contentWindow.location.replace(linkHref);
+                                        }, 0);
+                                        //iframe.contentWindow.location.replace(linkHref);
                                         //iframe.contentWindow.location.replace(newString);
                                     }
                                 }
