@@ -291,6 +291,7 @@ const config = {
     subtree: true,    // Observe all descendants of the parent element
     };
 
+let lastTimeout;
 const key_fav  = "__DOCSEARCH_FAVORITE_SEARCHES__" + window.index;
 const key_rece = "__DOCSEARCH_RECENT_SEARCHES__" + window.index;
 
@@ -830,10 +831,14 @@ const callback = (mutationsList, observer) => {
                                     //const newString = linkHref.replace('https://civapidocs.com/', 'http://localhost:8000/');
                                     if(iframe.contentWindow.location.href  != linkHref)
                                     {
-                                        setTimeout(function() {
+                                        // Clear any previous timeouts to ensure only the last one runs
+                                        clearTimeout(lastTimeout);
+                                        // Set a new timeout to perform the navigation
+                                        lastTimeout = setTimeout(function() {
                                             iframe.style.visibility = 'hidden';
-                                            iframe.contentWindow.location.replace(linkHref);
-                                            //iframe.contentWindow.location.replace(newString);
+                                            setTimeout(function() {
+                                                iframe.contentWindow.location.replace(linkHref);
+                                            }, 200);
                                         }, 0);
                                     }
                                 }
