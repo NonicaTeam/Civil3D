@@ -95,8 +95,11 @@ function renderSearchList(data)
 
 // Retrieve recent searches from localStorage using the detected key
 function getRecentSearches(key, limit = 99) {
-    loadCookieToLocalStorage(key)
     if (!key) return [];
+    if(key === key_fav)
+    {
+        loadCookieToLocalStorage(key)
+    }
     const stored = localStorage.getItem(key);
     if (!stored) return [];
     try {
@@ -341,12 +344,6 @@ function AddButtonToHtml(child)
     // Append path to SVG
     svg.appendChild(path);
 
-    // Append SVG to button
-    button.appendChild(svg);
-
-    // Append button to div
-    div.appendChild(button);
-
     button.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -356,6 +353,13 @@ function AddButtonToHtml(child)
         addFavoriteToHistory(extractedData)
         renderSearchList(extractedData)
     });
+
+    // Append SVG to button
+    button.appendChild(svg);
+
+    // Append button to div
+    div.appendChild(button);
+
     const containerElement = child.querySelector(".DocSearch-Hit-Container");
     containerElement.insertBefore(div, containerElement.lastElementChild);
 }
