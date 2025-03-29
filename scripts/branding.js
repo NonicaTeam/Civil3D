@@ -67,7 +67,7 @@
         }
         //Detect if there is a table in next sibling
         const nextSibling = region.nextElementSibling;
-        if(nextSibling)
+        if(nextSibling && !region.textContent.trim().toLowerCase().includes("api changes"))
         {
           const tableEles = nextSibling.querySelectorAll('table');
           if (tableEles && tableEles.length > 0)
