@@ -42,6 +42,7 @@
       </div>
 
 <script type="text/javascript">
+    
 window.index = "civapicom";
 //Start editing searcher here.
 
@@ -343,8 +344,6 @@ function AddButtonToHtml(child)
     button.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
-        //Delete from Recent
-        //removeSearchFromHistory(extractedData.url);
         //Add to favs
         addFavoriteToHistory(extractedData)
         renderSearchList(extractedData)
@@ -426,7 +425,7 @@ const callback = (mutationsList, observer) => {
 
             const panelTitle = document.createElement('h4');
 
-            panelTitle.textContent = 'Recent Searches (No Favs).';
+            panelTitle.textContent = 'Recent Searches.';
             panelTitle.style.padding = '10px';
             panelTitle.style.padding.right = '0px';
             panelTitle.style.color = '#5235ef';
@@ -534,7 +533,7 @@ const callback = (mutationsList, observer) => {
                         // Create top button to navigate to page
                         elementPreview.style.justifyContent = 'flex-start';
                         elementPreview.style.height = "25px";
-                        elementPreview.textContent = '↪ Go To This Page';
+                        elementPreview.textContent = '↪ Go To Page (🕵️ Not Saved)';
                         elementPreview.style.fontSize = '13px';
                         elementPreview.style.fontWeight = 'bold';
                         elementPreview.style.verticalAlign = 'top';                        
