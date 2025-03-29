@@ -836,15 +836,13 @@ const callback = (mutationsList, observer) => {
                                         clearTimeout(lastTimeout);
                                         // Set a new timeout to perform the navigation
                                         lastTimeout = setTimeout(function() {
-                                            iframe.style.visibility = 'hidden';
-                                            setTimeout(function() {
-                                                try
-                                                {
-                                                    iframe.contentWindow.location.replace(linkHref);
-                                                }
-                                                catch{ }
-                                            }, 200);
-                                        }, 0);
+                                            try
+                                            {
+                                                iframe.style.visibility = 'hidden';
+                                                iframe.contentWindow.location.replace(linkHref);
+                                            }
+                                            catch{ }
+                                        }, 200);
                                     }
                                 }
                             }
