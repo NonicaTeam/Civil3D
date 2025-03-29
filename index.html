@@ -56,7 +56,7 @@ const config = {
     };
 
 let lastTimeout;
-const key_fav  = "__DOCSEARCH_FAVORITE_SEARCHES__" + window.index;
+const key_fav  = "CivApiDocsFavorites" + window.index;
 const key_rece = "__DOCSEARCH_RECENT_SEARCHES__" + window.index;
 
 function loadCookieToLocalStorage(key) {
@@ -96,10 +96,6 @@ function renderSearchList(data)
 // Retrieve recent searches from localStorage using the detected key
 function getRecentSearches(key, limit = 99) {
     if (!key) return [];
-    if(key === key_fav)
-    {
-        loadCookieToLocalStorage(key)
-    }
     const stored = localStorage.getItem(key);
     if (!stored) return [];
     try {
@@ -392,6 +388,7 @@ const callback = (mutationsList, observer) => {
 
             // Append the iframe to the document body
             docSearchContainer.appendChild(leftpanel);
+            loadCookieToLocalStorage(key_fav)
             const favoriteSearches = getRecentSearches(key_fav);
             const panelFavTitle = document.createElement('h4');
             panelFavTitle.textContent = 'Favorites.';
