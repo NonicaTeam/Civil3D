@@ -350,7 +350,7 @@ function AddButtonToHtml(child)
         event.preventDefault();
         event.stopPropagation();
         //Delete from Recent
-        removeSearchFromHistory(extractedData.url);
+        //removeSearchFromHistory(extractedData.url);
         //Add to favs
         addFavoriteToHistory(extractedData)
         renderSearchList(extractedData)
