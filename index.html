@@ -129,7 +129,7 @@ function removeFavoriteFromHistory(searchurl) {
         const searches = JSON.parse(localStorage.getItem(key)) || [];
         const updatedSearches = searches.filter(search => search.url !== searchurl);
         localStorage.setItem(key, JSON.stringify(updatedSearches));
-        saveLocalStorageToCookie(key)
+        saveLocalStorageToCookie(key_fav)
     }
     catch{ }
 }
@@ -142,7 +142,7 @@ function addFavoriteToHistory(newSearch) {
     searches.push(newSearch);
     // Save the updated array back to local storage
     localStorage.setItem(key, JSON.stringify(searches));
-    saveLocalStorageToCookie(key)
+    saveLocalStorageToCookie(key_fav)
 }
 
 function createDocSearchHit(data, index, favOrRec) {
