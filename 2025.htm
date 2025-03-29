@@ -298,6 +298,25 @@ let lastTimeout;
 const key_fav  = "__DOCSEARCH_FAVORITE_SEARCHES__" + window.index;
 const key_rece = "__DOCSEARCH_RECENT_SEARCHES__" + window.index;
 
+function loadCookieToLocalStorage(key) {
+    let cookies = document.cookie.split('; ');
+    for (let cookie of cookies) {
+        let [cookieKey, cookieValue] = cookie.split('=');
+        if (cookieKey === key) {
+            localStorage.setItem(key, decodeURIComponent(cookieValue));
+            break;
+        }
+    }
+}
+
+function saveLocalStorageToCookie(key, days = 7) {
+    let value = localStorage.getItem(key);
+    if (value) {
+        let expires = new Date("Fri, 31 Dec 9999 23:59:59 GMT");
+        document.cookie = `${key}=${encodeURIComponent(value)}; expires=${expires.toUTCString()}; path=/`;
+    }
+}
+
 // Function to render again the favs list
 function renderSearchList(data) 
 {
@@ -314,6 +333,7 @@ function renderSearchList(data)
 
 // Retrieve recent searches from localStorage using the detected key
 function getRecentSearches(key, limit = 99) {
+    loadCookieToLocalStorage(key)
     if (!key) return [];
     const stored = localStorage.getItem(key);
     if (!stored) return [];
@@ -348,6 +368,7 @@ function removeFavoriteFromHistory(searchurl) {
         const searches = JSON.parse(localStorage.getItem(key)) || [];
         const updatedSearches = searches.filter(search => search.url !== searchurl);
         localStorage.setItem(key, JSON.stringify(updatedSearches));
+        saveLocalStorageToCookie(key)
     }
     catch{ }
 }
@@ -360,6 +381,7 @@ function addFavoriteToHistory(newSearch) {
     searches.push(newSearch);
     // Save the updated array back to local storage
     localStorage.setItem(key, JSON.stringify(searches));
+    saveLocalStorageToCookie(key)
 }
 
 function createDocSearchHit(data, index, favOrRec) {
