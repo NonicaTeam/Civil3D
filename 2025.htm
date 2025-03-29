@@ -468,6 +468,7 @@ function createDocSearchHit(data, index, favOrRec) {
         });
         actionDiv2.classList.add('DocSearch-Hit-action');
         const buttonAddFavs = document.createElement('button');
+        buttonAddFavs.id = "star_button";
         buttonAddFavs.title = 'Add this to favorites.';
         buttonAddFavs.type = 'submit';
         buttonAddFavs.classList.add('DocSearch-Hit-action-button');
@@ -642,8 +643,8 @@ const callback = (mutationsList, observer) => {
                 panelFavSubTitle.id = "SubtitleNoFavs";
                 panelFavSubTitle.style.whiteSpace = "pre-line";
                 panelFavSubTitle.textContent = "⭐ No Favorites Marked.";
-                panelFavSubTitle.style.padding = '10px';
                 panelFavSubTitle.style.margin = '0px';
+                panelFavSubTitle.style.padding = '10px';
                 panelFavSubTitle.style.color = '#baaef9';
                 outer_container.appendChild(panelFavSubTitle);
                 leftpanel.appendChild(outer_container);
@@ -775,7 +776,7 @@ const callback = (mutationsList, observer) => {
                         // Create top button to navigate to page
                         elementPreview.style.justifyContent = 'flex-start';
                         elementPreview.style.height = "25px";
-                        elementPreview.textContent = '↪ Go To Page (🕵️ Not Saved)';
+                        elementPreview.textContent = '↪ Go To Page (🕵️ No Recents)';
                         elementPreview.style.fontSize = '13px';
                         elementPreview.style.fontWeight = 'bold';
                         elementPreview.style.verticalAlign = 'top';                        
@@ -832,8 +833,13 @@ const callback = (mutationsList, observer) => {
             const childElements = parentElement.children;
             for (let child of childElements) {
                 //Add star to main searched item
-                if(!child.querySelector("#star_button") && !child.querySelector('path[d="M10 14.2L5 17l1-5.6-4-4 5.5-.7 2.5-5 2.5 5 5.6.8-4 4 .9 5.5z"]'))
+                if(!child.querySelector("#star_button"))
                 {
+                    let starSvg = child.querySelector('path[d="M10 14.2L5 17l1-5.6-4-4 5.5-.7 2.5-5 2.5 5 5.6.8-4 4 .9 5.5z"]')
+                    if(starSvg)
+                    {
+                        starSvg.parentElement.remove()
+                    }
                     AddButtonToHtml(child)
                 }
             }
@@ -846,8 +852,13 @@ const callback = (mutationsList, observer) => {
                         const childElements = parentElement.children;
                         for (let child of childElements) {
                             //Add star to main searched item
-                            if(!child.querySelector("#star_button") && !child.querySelector('path[d="M10 14.2L5 17l1-5.6-4-4 5.5-.7 2.5-5 2.5 5 5.6.8-4 4 .9 5.5z"]'))
+                            if(!child.querySelector("#star_button"))
                             {
+                                let starSvg = child.querySelector('path[d="M10 14.2L5 17l1-5.6-4-4 5.5-.7 2.5-5 2.5 5 5.6.8-4 4 .9 5.5z"]')
+                                if(starSvg)
+                                {
+                                    starSvg.parentElement.remove()
+                                }
                                 AddButtonToHtml(child)
                             }
                             // Check if the 'data-active' attribute is set to "true" to update iframe

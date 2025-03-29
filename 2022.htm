@@ -295,7 +295,7 @@ const config = {
     };
 
 let lastTimeout;
-const key_fav  = "__DOCSEARCH_FAVORITE_SEARCHES__" + window.index;
+const key_fav  = "CivApiDocsFavorites" + window.index;
 const key_rece = "__DOCSEARCH_RECENT_SEARCHES__" + window.index;
 
 function loadCookieToLocalStorage(key) {
@@ -309,10 +309,11 @@ function loadCookieToLocalStorage(key) {
     }
 }
 
-function saveLocalStorageToCookie(key, days = 7) {
-    let value = localStorage.getItem(key);
+function saveLocalStorageToCookie(key, days = 9999) {
+    const value = localStorage.getItem(key);
     if (value) {
-        let expires = new Date("Fri, 31 Dec 9999 23:59:59 GMT");
+        const expires = new Date();
+        expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
         document.cookie = `${key}=${encodeURIComponent(value)}; expires=${expires.toUTCString()}; path=/`;
     }
 }
@@ -333,7 +334,6 @@ function renderSearchList(data)
 
 // Retrieve recent searches from localStorage using the detected key
 function getRecentSearches(key, limit = 99) {
-    loadCookieToLocalStorage(key)
     if (!key) return [];
     const stored = localStorage.getItem(key);
     if (!stored) return [];
@@ -368,7 +368,7 @@ function removeFavoriteFromHistory(searchurl) {
         const searches = JSON.parse(localStorage.getItem(key)) || [];
         const updatedSearches = searches.filter(search => search.url !== searchurl);
         localStorage.setItem(key, JSON.stringify(updatedSearches));
-        saveLocalStorageToCookie(key)
+        saveLocalStorageToCookie(key_fav)
     }
     catch{ }
 }
@@ -381,7 +381,7 @@ function addFavoriteToHistory(newSearch) {
     searches.push(newSearch);
     // Save the updated array back to local storage
     localStorage.setItem(key, JSON.stringify(searches));
-    saveLocalStorageToCookie(key)
+    saveLocalStorageToCookie(key_fav)
 }
 
 function createDocSearchHit(data, index, favOrRec) {
@@ -453,6 +453,7 @@ function createDocSearchHit(data, index, favOrRec) {
                 panelFavSubTitle.style.whiteSpace = "pre-line";
                 panelFavSubTitle.textContent = "⭐ No Favorites Marked.";
                 panelFavSubTitle.style.padding = '10px';
+                panelFavSubTitle.style.margin = '0px';
                 panelFavSubTitle.style.color = '#baaef9';
                 favcontainer.appendChild(panelFavSubTitle);
             }
@@ -468,6 +469,7 @@ function createDocSearchHit(data, index, favOrRec) {
         });
         actionDiv2.classList.add('DocSearch-Hit-action');
         const buttonAddFavs = document.createElement('button');
+        buttonAddFavs.id = "star_button";
         buttonAddFavs.title = 'Add this to favorites.';
         buttonAddFavs.type = 'submit';
         buttonAddFavs.classList.add('DocSearch-Hit-action-button');
@@ -579,21 +581,20 @@ function AddButtonToHtml(child)
     // Append path to SVG
     svg.appendChild(path);
 
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        //Add to favs
+        addFavoriteToHistory(extractedData)
+        renderSearchList(extractedData)
+    });
+
     // Append SVG to button
     button.appendChild(svg);
 
     // Append button to div
     div.appendChild(button);
 
-    button.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        //Delete from Recent
-        removeSearchFromHistory(extractedData.url);
-        //Add to favs
-        addFavoriteToHistory(extractedData)
-        renderSearchList(extractedData)
-    });
     const containerElement = child.querySelector(".DocSearch-Hit-Container");
     containerElement.insertBefore(div, containerElement.lastElementChild);
 }
@@ -626,10 +627,12 @@ const callback = (mutationsList, observer) => {
 
             // Append the iframe to the document body
             docSearchContainer.appendChild(leftpanel);
+            loadCookieToLocalStorage(key_fav)
             const favoriteSearches = getRecentSearches(key_fav);
             const panelFavTitle = document.createElement('h4');
             panelFavTitle.textContent = 'Favorites.';
             panelFavTitle.style.padding = '10px';
+            panelFavTitle.style.margin = '0px';
             panelFavTitle.style.color = '#5235ef';
             leftpanel.appendChild(panelFavTitle);
 
@@ -641,6 +644,7 @@ const callback = (mutationsList, observer) => {
                 panelFavSubTitle.id = "SubtitleNoFavs";
                 panelFavSubTitle.style.whiteSpace = "pre-line";
                 panelFavSubTitle.textContent = "⭐ No Favorites Marked.";
+                panelFavSubTitle.style.margin = '0px';
                 panelFavSubTitle.style.padding = '10px';
                 panelFavSubTitle.style.color = '#baaef9';
                 outer_container.appendChild(panelFavSubTitle);
@@ -663,9 +667,10 @@ const callback = (mutationsList, observer) => {
 
             const panelTitle = document.createElement('h4');
 
-            panelTitle.textContent = 'Recent Searches (No Favs).';
+            panelTitle.textContent = 'Recent Searches.';
             panelTitle.style.padding = '10px';
             panelTitle.style.padding.right = '0px';
+            panelTitle.style.margin = '0px';
             panelTitle.style.color = '#5235ef';
             leftpanel.appendChild(panelTitle);
             // Step 3: Iterate over the array
@@ -676,6 +681,7 @@ const callback = (mutationsList, observer) => {
                 const panelFavSubTitle2 = document.createElement('h5');
                 panelFavSubTitle2.textContent = "👀 No Recent Searches Found.";
                 panelFavSubTitle2.style.padding = '10px';
+                panelFavSubTitle2.style.margin = '0px';
                 panelFavSubTitle2.style.color = '#baaef9';
                 outer_container2.appendChild(panelFavSubTitle2);
                 leftpanel.appendChild(outer_container2);
@@ -713,6 +719,10 @@ const callback = (mutationsList, observer) => {
             iframe.style.overflowX = "scroll"; 
             iframe.style.zIndex = '9999';
             iframe.style.borderRadius = "5px"; 
+            iframe.style.height = '100%';
+            iframe.style.boxShadow = "none"; 
+            iframe.style.border = "none"; 
+            iframe.style.width = '100%';
             iframe.style.backgroundColor = 'white';
             containerIframe.appendChild(iframe);
 
@@ -767,7 +777,7 @@ const callback = (mutationsList, observer) => {
                         // Create top button to navigate to page
                         elementPreview.style.justifyContent = 'flex-start';
                         elementPreview.style.height = "25px";
-                        elementPreview.textContent = '↪ Go To This Page';
+                        elementPreview.textContent = '↪ Go To Page (🕵️ No Recents)';
                         elementPreview.style.fontSize = '13px';
                         elementPreview.style.fontWeight = 'bold';
                         elementPreview.style.verticalAlign = 'top';                        
@@ -824,8 +834,13 @@ const callback = (mutationsList, observer) => {
             const childElements = parentElement.children;
             for (let child of childElements) {
                 //Add star to main searched item
-                if(!child.querySelector("#star_button") && !child.querySelector('path[d="M10 14.2L5 17l1-5.6-4-4 5.5-.7 2.5-5 2.5 5 5.6.8-4 4 .9 5.5z"]'))
+                if(!child.querySelector("#star_button"))
                 {
+                    let starSvg = child.querySelector('path[d="M10 14.2L5 17l1-5.6-4-4 5.5-.7 2.5-5 2.5 5 5.6.8-4 4 .9 5.5z"]')
+                    if(starSvg)
+                    {
+                        starSvg.parentElement.remove()
+                    }
                     AddButtonToHtml(child)
                 }
             }
@@ -838,8 +853,13 @@ const callback = (mutationsList, observer) => {
                         const childElements = parentElement.children;
                         for (let child of childElements) {
                             //Add star to main searched item
-                            if(!child.querySelector("#star_button") && !child.querySelector('path[d="M10 14.2L5 17l1-5.6-4-4 5.5-.7 2.5-5 2.5 5 5.6.8-4 4 .9 5.5z"]'))
+                            if(!child.querySelector("#star_button"))
                             {
+                                let starSvg = child.querySelector('path[d="M10 14.2L5 17l1-5.6-4-4 5.5-.7 2.5-5 2.5 5 5.6.8-4 4 .9 5.5z"]')
+                                if(starSvg)
+                                {
+                                    starSvg.parentElement.remove()
+                                }
                                 AddButtonToHtml(child)
                             }
                             // Check if the 'data-active' attribute is set to "true" to update iframe
@@ -900,6 +920,7 @@ const callback = (mutationsList, observer) => {
                 panelFavSubTitle.style.whiteSpace = "pre-line";
                 panelFavSubTitle.textContent = "⭐ No Favorites Marked.";
                 panelFavSubTitle.style.padding = '10px';
+                panelFavSubTitle.style.margin = '0px';
                 panelFavSubTitle.style.color = '#baaef9';
                 containerFavs.appendChild(panelFavSubTitle);
             }
@@ -915,6 +936,7 @@ const callback = (mutationsList, observer) => {
                 const panelFavSubTitle2 = document.createElement('h5');
                 panelFavSubTitle2.textContent = "👀 No Recent Searches Found.";
                 panelFavSubTitle2.style.padding = '10px';
+                panelFavSubTitle2.style.margin = '0px';
                 panelFavSubTitle2.style.color = '#baaef9';
                 containerSearch.appendChild(panelFavSubTitle2);
             }
@@ -927,6 +949,7 @@ const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
 
 //Stop Editing Searcher here
+
 
 
     $(function() {
