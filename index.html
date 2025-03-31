@@ -138,7 +138,12 @@ function removeFavoriteFromHistory(searchurl) {
 function addFavoriteToHistory(newSearch) {
     const key = key_fav; // Ensure this matches the key used in your remove function
     // Retrieve the existing searches array from local storage, or initialize it as an empty array if it doesn't exist
-    const searches = JSON.parse(localStorage.getItem(key)) || [];
+    const storedValue = localStorage.getItem(key);
+    let searches = []
+    if(storedValue && storedValue != "")
+    {
+        searches = JSON.parse(storedValue) || [];
+    }
     // Add the new search to the array
     searches.push(newSearch);
     // Save the updated array back to local storage
@@ -243,7 +248,15 @@ function createDocSearchHit(data, index, favOrRec) {
             removeSearchFromHistory(data.url);
             listItem.remove(); // Optionally remove the list item from the DOM
             //Add to favs
-            addFavoriteToHistory(data)
+            const extractedData = {
+                url: data.url,
+                content: data.content,
+                hierarchy: {
+                    lvl0: data.hierarchy.lvl0,
+                    lvl1: data.hierarchy.lvl1
+                },
+            };
+            addFavoriteToHistory(extractedData)
             renderSearchList(data)
         });
 
@@ -391,7 +404,7 @@ const callback = (mutationsList, observer) => {
             loadCookieToLocalStorage(key_fav)
             const favoriteSearches = getRecentSearches(key_fav);
             const panelFavTitle = document.createElement('h4');
-            panelFavTitle.textContent = 'Favorites.';
+            panelFavTitle.textContent = 'Favorites. (Max 12)';
             panelFavTitle.style.padding = '10px';
             panelFavTitle.style.color = '#5235ef';
             leftpanel.appendChild(panelFavTitle);
