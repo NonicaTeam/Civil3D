@@ -384,7 +384,13 @@ function removeFavoriteFromHistory(searchurl) {
 function addFavoriteToHistory(newSearch) {
     const key = key_fav; // Ensure this matches the key used in your remove function
     // Retrieve the existing searches array from local storage, or initialize it as an empty array if it doesn't exist
-    const searches = JSON.parse(localStorage.getItem(key)) || [];
+    const storedValue = localStorage.getItem(key);
+    let searches = []
+    if(storedValue && storedValue != "")
+    {
+        searches = JSON.parse(storedValue) || [];
+    }
+    
     // Add the new search to the array
     searches.push(newSearch);
     // Save the updated array back to local storage
