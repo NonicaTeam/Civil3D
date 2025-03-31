@@ -309,11 +309,14 @@ function loadCookieToLocalStorage(key) {
 }
 
 function saveLocalStorageToCookie(key, days = 9999) {
+    console.log("saveToLocal","saveToLocal")
     const value = localStorage.getItem(key);
     if (value) {
+        console.log("value localstorage detected","value localstorage detected")
         const expires = new Date();
         expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
         document.cookie = `${key}=${encodeURIComponent(value)}; expires=${expires.toUTCString()}; path=/`;
+        console.log("finished","finished")
     }
 }
 
