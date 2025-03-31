@@ -308,14 +308,20 @@ function loadCookieToLocalStorage(key) {
     }
 }
 
+function deleteCookie(key) {
+  // Make sure the deletion string matches the cookie's attributes
+  document.cookie = `${key}=; expires=Thu, 01 Jan 3500 00:00:00 UTC; path=/`;
+}
+
 function saveLocalStorageToCookie(key, days = 9999) {
     console.log("saveToLocal","saveToLocal")
     const value = localStorage.getItem(key);
     if (value) {
+        deleteCookie(key);
         console.log("value localstorage detected","value localstorage detected")
-        const expires = new Date();
-        expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-        document.cookie = `${key}=${encodeURIComponent(value)}; expires=${expires.toUTCString()}; path=/`;
+        //const expires = new Date();
+        //expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+        document.cookie = `${key}=${encodeURIComponent(value)}; expires=Thu, 01 Jan 3500 00:00:00 UTC; path=/`;
         console.log("finished","finished")
     }
 }
