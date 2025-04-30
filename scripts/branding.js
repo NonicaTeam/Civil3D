@@ -9,10 +9,10 @@
         var directory = pathParts[1];
 
         //Remove for indexing
-        if(directory === "2026")
-        {
-          return;
-        }
+        // if(directory === "2026")
+        // {
+        //   return;
+        // }
 
         // The file name (e.g., "1d2da0b1-26ee-91bc-cf36-d70eb73ea821.htm") is the third element.
         var fileName = pathParts[2];
