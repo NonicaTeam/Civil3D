@@ -8,6 +8,11 @@
         // The directory (e.g., "2025") is the second element.
         var directory = pathParts[1];
 
+
+        if(directory === "2027")
+        {
+          return;
+        }
         //Remove for indexing
         // if(directory === "2026")
         // {
