@@ -1,12 +1,12 @@
 # Civ API Docs
 
-Civil3D API documentation for years 2022-2026, powered by Algolia search.
+Civil3D API documentation for years 2022-2027, powered by Algolia search.
 
 **Live Site:** [CivApiDocs](https://civapidocs.com)
 
 ## Features
 
-- Multi-year Civil3D API documentation (2022-2026)
+- Multi-year Civil3D API documentation (2022-2027)
 - Instant search across all documentation
 - Embeddable search snippet for external websites
 
@@ -54,7 +54,7 @@ docsearch({
         });
     },
     maxResultsPerGroup: 20,
-    initialQuery: "2026 ",
+    initialQuery: "2027 ",
 })
 </script>
 ```
