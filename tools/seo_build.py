@@ -36,7 +36,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 YEARS = sorted(d for d in os.listdir(ROOT) if re.fullmatch(r"20\d\d", d) and os.path.isdir(os.path.join(ROOT, d)))
 LATEST = YEARS[-1]
 
-TITLE_SUFFIX_RE = re.compile(r"\s*\|\s*Civil 3D 20\d\d API\s*$")
+# Large icons for search results (Google wants a multiple of 48px) and home screens.
+# icons/favicon.ico (and /favicon.ico for pages without an icon link) stays the small icon.
+ICON_LINKS = ('<link rel="icon" type="image/png" sizes="192x192" href="icons/favicon-192.png" />'
+              '<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />')
+TITLE_SUFFIX_RE =re.compile(r"\s*\|\s*Civil 3D 20\d\d API\s*$")
 BLOCK_RE = {name: re.compile(r"<!--seo:%s-->.*?<!--/seo:%s-->" % (name, name), re.S) for name in ("head", "body", "ns", "links")}
 
 
@@ -198,7 +202,7 @@ def process_shell(year, tree):
         "if(id&&/^[\\w.-]+\\.htm$/.test(id)&&id!=='WhatsNew.htm'){"
         "document.getElementById('cadCanonical').href='%s/%s/'+id;}})();</script>"
     ) % (esc(desc), SITE, year, SITE, year)
-    text = text.replace("</head>", "<!--seo:head-->%s<!--/seo:head--></head>" % head, 1)
+    text = text.replace("</head>", "<!--seo:head-->%s%s<!--/seo:head--></head>" % (head, ICON_LINKS), 1)
 
     # Year buttons: real hrefs (AssignLinksToButtons still updates them per page).
     text = re.sub(r'<a (style="[^"]*")>(<button class="[^"]*">(20\d\d)</button>)', r'<a \1 href="\3.htm">\2', text)
@@ -227,7 +231,7 @@ def process_index(trees, exists):
         '<link rel="canonical" href="%s/" />'
         '<script type="application/ld+json">%s</script>'
     ) % (YEARS[0], LATEST, SITE, jsonld({"@context": "https://schema.org", "@type": "WebSite", "name": "Civ API Docs", "url": SITE + "/"}))
-    text = text.replace("</head>", "<!--seo:head-->%s<!--/seo:head--></head>" % head, 1)
+    text = text.replace("</head>", "<!--seo:head-->%s%s<!--/seo:head--></head>" % (head, ICON_LINKS), 1)
 
     links = []
     for n in trees[LATEST]:
