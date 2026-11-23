@@ -26,7 +26,14 @@ It rewrites the pages in place and is safe to re-run (unchanged files are left a
 
 It also moves each year's tree to `{year}/toc.json` and regenerates `sitemap*.xml` and `robots.txt`.
 
-When adding a new year, also add its button to `index.html` and to every `{year}.htm`.
+### Adding a new API year
+
+1. Copy the generated HTML pages into a `{year}/` folder (e.g. `2028/`).
+2. Copy the latest `{year}.htm` to `2028.htm`, then set `window.year`, the title and the tree `source` JSON for the new year.
+3. Add a `2028` button to `index.html` and to every `{year}.htm`.
+4. Run `python tools/seo_build.py`.
+5. Check locally: run `python -m http.server`, then open `http://localhost:8000/2028.htm` and one page under `/2028/`.
+6. Commit and push to `main` (GitHub Pages deploys it), then resubmit `sitemap.xml` in Search Console.
 
 ## Embeddable Search Snippet
 
