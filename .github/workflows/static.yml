@@ -38,6 +38,10 @@ jobs:
         with:
           # Upload entire repository
           path: '.'
+      # deploy-pages can query the artifact before GitHub has registered it
+      # ("No artifacts named github-pages were found"); give it a moment.
+      - name: Wait for artifact to be registered
+        run: sleep 20
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
