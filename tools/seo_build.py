@@ -47,7 +47,8 @@ def read(path):
 
 
 def write_if_changed(path, text):
-    if os.path.exists(path) and read(path) == text:
+    # Ignore CRLF/LF-only differences (git may convert line endings on checkout).
+    if os.path.exists(path) and read(path).replace("\r\n", "\n") == text.replace("\r\n", "\n"):
         return False
     with open(path, "w", encoding="utf-8", errors="surrogateescape", newline="") as f:
         f.write(text)
@@ -233,8 +234,7 @@ def process_index(trees, exists):
         if n.get("href"):
             t = plain(n.get("title", ""))
             links.append('<a href="%s">%s</a>' % (esc(n["href"]), esc(t.replace("Autodesk.Civil.", "") or t)))
-    if "WhatsNew.htm" in exists[LATEST]:
-        links.insert(0, '<a href="%s/WhatsNew.htm">What\'s new in %s</a>' % (LATEST, LATEST))
+    links.insert(0, '<a href="%s.htm">Browse the %s API</a>' % (LATEST, LATEST))
     block = ('<!--seo:links--><nav class="bodyText nsLinks" aria-label="Civil 3D %s API namespaces">'
              'Civil 3D %s API: %s</nav><!--/seo:links-->') % (LATEST, LATEST, " &middot; ".join(links))
     anchor = '<span class="bodyText">by Nonica.io</span>'
