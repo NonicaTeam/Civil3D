@@ -10,6 +10,24 @@ Civil3D API documentation for years 2022-2027, powered by Algolia search.
 - Instant search across all documentation
 - Embeddable search snippet for external websites
 
+## SEO build
+
+After adding a new API year or regenerating the docs, run this from the repo root and commit the result:
+
+```bash
+python tools/seo_build.py
+```
+
+It rewrites the pages in place and is safe to re-run (unchanged files are left alone). For each page it sets:
+
+- the title with the year
+- the canonical link and viewport
+- the breadcrumb and links to the same page in other years
+
+It also moves each year's tree to `{year}/toc.json` and regenerates `sitemap*.xml` and `robots.txt`.
+
+When adding a new year, also add its button to `index.html` and to every `{year}.htm`.
+
 ## Embeddable Search Snippet
 
 Add a Civil3D API search bar to any website. Copy-paste the full snippet directly into WordPress (Custom HTML block), Webflow, Squarespace, or any HTML page.
